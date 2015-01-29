@@ -1,5 +1,6 @@
 JNBT License
 
+Copyright (c) 2015 Neil Wightman
 Copyright (c) 2010 Graham Edgecombe
 All rights reserved.
 
