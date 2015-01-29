@@ -23,6 +23,8 @@ For more information about the license, see LICENSE.TXT.
 Building
 -----
 
-> git clone git@github.com:neilwightman/jnbt.git
-> cd jnbt/
-> mvn clean package
+```bash
+git clone git@github.com:neilwightman/jnbt.git
+cd jnbt/
+mvn clean package
+```
