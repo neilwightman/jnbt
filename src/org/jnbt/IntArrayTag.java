@@ -5,7 +5,7 @@ import java.util.Arrays;
 /*
  * JNBT License
  * 
- * Copyright (c) 2010 Graham Edgecombe
+ * Copyright (c) 2015 Neil Wightman
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -35,9 +35,9 @@ import java.util.Arrays;
  * POSSIBILITY OF SUCH DAMAGE. 
  */
 /**
- * The <code>TAG_Int</code> tag.
+ * The <code>TAG_Int_Array</code> tag.
  *
- * @author Graham Edgecombe
+ * @author Neil Wightman
  *
  */
 public final class IntArrayTag extends Tag {
