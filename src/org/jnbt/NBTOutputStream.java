@@ -1,15 +1,9 @@
 package org.jnbt;
 
-import java.io.Closeable;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
-import java.util.zip.GZIPOutputStream;
-
 /*
  * JNBT License
- * 
+ *
+ * Copyright (c) 2015 Neil Wightman
  * Copyright (c) 2010 Graham Edgecombe
  * All rights reserved.
  * 
@@ -39,6 +33,16 @@ import java.util.zip.GZIPOutputStream;
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE. 
  */
+import java.io.Closeable;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.zip.GZIPOutputStream;
+/**
+ * Changes : Neil Wightman - Support 19133 Tag_Int_Array tag
+ */
+
 /**
  * <p>
  * This class writes <strong>NBT</strong>, or
@@ -59,7 +63,16 @@ public final class NBTOutputStream implements Closeable {
     private final DataOutputStream os;
 
     /**
+     * Create a new <code>NBTOutputStream</code>, which will write data to the specified underlying output stream.
+     * @param os The output stream
+     */
+    public NBTOutputStream(DataOutputStream os) {
+        this.os = os;
+    }
+
+    /**
      * Creates a new <code>NBTOutputStream</code>, which will write data to the specified underlying output stream.
+     * the stream will be compressed using GZIP.
      *
      * @param os The output stream.
      * @throws IOException if an I/O error occurs.
@@ -133,10 +146,8 @@ public final class NBTOutputStream implements Closeable {
                 writeCompoundTagPayload((CompoundTag) tag);
                 break;
             case NBTConstants.TYPE_INT_ARRAY:
-//                writeIntArrayTagPayload((CompoundTag) tag);
-                System.err.println("Cannot write int array");
-                throw new IllegalStateException();
-//                break;
+                writeIntArrayTagPayload((IntArrayTag) tag);
+                break;
             default:
                 throw new IOException("Invalid tag type: " + type + ".");
         }
@@ -163,6 +174,7 @@ public final class NBTOutputStream implements Closeable {
         os.writeInt(bytes.length);
         os.write(bytes);
     }
+
 
     /**
      * Writes a <code>TAG_Compound</code> tag.
@@ -265,6 +277,20 @@ public final class NBTOutputStream implements Closeable {
      */
     private void writeEndTagPayload(EndTag tag) {
         /* empty */
+    }
+
+    /**
+     * Writes a <code>TAG_Int_Array</code> tag.
+     *
+     * @param tag The tag.
+     * @throws IOException if an I/O error occurs.
+     */
+    private void writeIntArrayTagPayload(IntArrayTag tag) throws IOException {
+        final int[] values = tag.getValue();
+        os.writeInt(values.length);
+        for(final int value : values) {
+            os.writeInt(value);
+        }
     }
 
     @Override

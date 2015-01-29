@@ -2,7 +2,8 @@ package org.jnbt;
 
 /*
  * JNBT License
- * 
+ *
+ * Copyright (c) 2015 Neil Wightman
  * Copyright (c) 2010 Graham Edgecombe
  * All rights reserved.
  * 
@@ -30,10 +31,13 @@ package org.jnbt;
  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE. 
+ * POSSIBILITY OF SUCH DAMAGE.
  */
 /**
- * A class which contains NBT-related utility methods.
+ * Changes : Neil Wightman - Support 19133 Tag_Int_Array tag
+ */
+/**
+ * A class which contains NBT-related utility methods. This currently supports reading 19133 but <b>only</b> writing 19132.
  *
  * @author Graham Edgecombe
  *

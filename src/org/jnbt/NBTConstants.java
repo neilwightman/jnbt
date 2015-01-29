@@ -1,10 +1,9 @@
 package org.jnbt;
 
-import java.nio.charset.Charset;
-
 /*
  * JNBT License
- * 
+ *
+ * Copyright (c) 2015 Neil Wightman
  * Copyright (c) 2010 Graham Edgecombe
  * All rights reserved.
  * 
@@ -33,6 +32,11 @@ import java.nio.charset.Charset;
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE. 
+ */
+import java.nio.charset.Charset;
+
+/**
+ * Changes : Neil Wightman - Support 19133 Tag_Int_Array tag
  */
 /**
  * A class which holds constant values.

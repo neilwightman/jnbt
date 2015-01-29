@@ -2,7 +2,8 @@ package org.jnbt;
 
 /*
  * JNBT License
- * 
+ *
+ * Copyright (c) 2015 Neil Wightman
  * Copyright (c) 2010 Graham Edgecombe
  * All rights reserved.
  * 
@@ -30,8 +31,9 @@ package org.jnbt;
  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE. 
+ * POSSIBILITY OF SUCH DAMAGE.
  */
+
 import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -41,6 +43,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
+
+/**
+ * Changes :
+ *     Neil Wightman - Support 19133 Tag_Int_Array tag
+ */
 
 /**
  * <p>
@@ -61,12 +68,17 @@ public final class NBTInputStream implements Closeable {
      */
     private final DataInputStream is;
 
+    /**
+     * Create a new <code>NBTInputStream</code>, which will source its data from the specified input stream.
+     * @param is The output stream
+     */
     public NBTInputStream(DataInputStream is) {
         this.is = is;
     }
 
     /**
      * Creates a new <code>NBTInputStream</code>, which will source its data from the specified input stream.
+     * The stream will be decompressed using GZIP.
      *
      * @param is The input stream.
      * @throws IOException if an I/O error occurs.
